@@ -1,0 +1,77 @@
+[
+  {
+    "id": "qualified-out-of-order",
+    "title": "Qualified customer shares details naturally",
+    "expected_action": "qualified_handoff",
+    "turns": [
+      "Yes, this is Priya Sharma.",
+      "Yes, let's continue.",
+      "It's a jointly owned residential home. Originals are ready. I need 50 lakhs, I'm salaried with income credited to my bank, the property is worth 1.1 crore, and 12 years would work."
+    ]
+  },
+  {
+    "id": "agricultural-disqualification",
+    "title": "Agricultural property ends the call immediately",
+    "expected_action": "ineligible",
+    "turns": [
+      "Yes, this is Priya Sharma. The property is agricultural land."
+    ]
+  },
+  {
+    "id": "missing-originals",
+    "title": "Unavailable original papers",
+    "expected_action": "ineligible",
+    "turns": [
+      "Yes, I am Priya Sharma.",
+      "Yes, continue.",
+      "It is a commercial shop, I am the sole owner, but the original title papers are missing."
+    ]
+  },
+  {
+    "id": "over-limit-accept",
+    "title": "Customer accepts the maximum after requesting more",
+    "expected_action": "ask_eligibility",
+    "turns": [
+      "Yes, this is Priya Sharma.",
+      "Sure, let's proceed.",
+      "I would need 90 lakhs.",
+      "Yes, 75 lakhs will work."
+    ]
+  },
+  {
+    "id": "transfer-specialist",
+    "title": "Existing loan routes to transfer specialist",
+    "expected_action": "transfer_specialist",
+    "turns": [
+      "Yes, this is Priya Sharma. I already have a loan against this property and want to lower the EMI."
+    ]
+  },
+  {
+    "id": "busy-callback",
+    "title": "Busy caller chooses a callback time",
+    "expected_action": "callback_requested",
+    "turns": [
+      "I'm driving, please call me tomorrow around 4 pm."
+    ]
+  },
+  {
+    "id": "cash-income",
+    "title": "Cash income is not eligible",
+    "expected_action": "ineligible",
+    "turns": [
+      "Yes, this is Priya Sharma.",
+      "Let's continue.",
+      "My income is received in cash."
+    ]
+  },
+  {
+    "id": "correction",
+    "title": "A latest correction replaces an earlier answer",
+    "expected_action": "ask_eligibility",
+    "turns": [
+      "Yes, this is Priya Sharma.",
+      "Okay.",
+      "I first said agricultural, but correction: it is a residential flat."
+    ]
+  }
+]

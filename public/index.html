@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f2">
+  <title>Home Credit · LAP Voice Agent Lab</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Home Credit LAP Voice Agent Lab">
+        <span class="brand-mark">hc</span>
+        <span><strong>home credit</strong><small>VOICE AGENT LAB</small></span>
+      </a>
+      <div class="side-section">
+        <span class="side-label">WORKSPACE</span>
+        <div class="side-link active"><span class="side-icon">◉</span>Qualification demo</div>
+        <a class="side-link" href="/api/health" target="_blank" rel="noreferrer"><span class="side-icon">⌁</span>API status</a>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="privacy-icon">◇</div>
+        <strong>Private by design</strong>
+        <p>Demo conversations stay in this browser session and local server memory.</p>
+        <span class="local-badge"><i></i> LOCAL DEMO</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="breadcrumb">Projects <span>/</span> LAP qualification</div>
+        <div class="top-actions"><span class="status-dot"></span> Deterministic demo <span class="avatar">AI</span></div>
+      </header>
+
+      <div class="content">
+        <div class="page-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> CONVERSATION DESIGN</div>
+            <h1>Loan Against Property <span>qualification</span></h1>
+            <p class="subtitle">Test a natural, policy-gated voice conversation before the human handoff.</p>
+          </div>
+          <button id="reset-button" class="button button-quiet" type="button"><span>↻</span> New conversation</button>
+        </div>
+
+        <section class="setup-card" aria-labelledby="setup-title">
+          <div class="section-heading">
+            <div><div class="section-kicker">01 / CALL SETUP</div><h2 id="setup-title">Agent & customer</h2></div>
+            <span class="card-hint">Personalization is session-only</span>
+          </div>
+          <div class="setup-grid">
+            <label class="input-wrap"><span>Customer name</span><input id="customer-name" value="Priya Sharma" autocomplete="off"></label>
+            <label class="input-wrap"><span>Company</span><input id="company-name" value="Home Credit" autocomplete="off"></label>
+            <label class="input-wrap"><span>Agent name</span><input id="agent-name" value="Aarav" autocomplete="off"></label>
+            <label class="input-wrap"><span>Agent gender</span><select id="agent-gender"><option value="neutral">Neutral</option><option value="female">Female</option><option value="male">Male</option></select></label>
+            <label class="input-wrap"><span>Language</span><select id="language"><option>English</option><option>Hindi</option></select></label>
+            <label class="input-wrap"><span>Current date</span><input id="current-date" placeholder="YYYY-MM-DD (optional)" autocomplete="off"></label>
+            <label class="input-wrap"><span>Current day</span><input id="current-day" placeholder="e.g. Thursday (optional)" autocomplete="off"></label>
+            <label class="input-wrap"><span>Current time</span><input id="current-time" placeholder="e.g. 4:30 PM (optional)" autocomplete="off"></label>
+          </div>
+          <details class="advanced">
+            <summary>Advanced context <span>Optional RAG and history variables</span></summary>
+            <div class="advanced-grid">
+              <label class="input-wrap"><span>Additional context from RAG</span><textarea id="rag-context" rows="2" placeholder="Approved product facts only. Does not override eligibility rules."></textarea></label>
+              <label class="input-wrap"><span>Conversation history</span><textarea id="history-context" rows="2" placeholder="Context for the agent; never treated as verified eligibility."></textarea></label>
+            </div>
+          </details>
+          <div class="setup-footer">
+            <span class="setup-note"><span class="tiny-shield">◇</span> No real calls, approvals, or external recordings are created.</span>
+            <button id="start-button" class="button button-primary" type="button">Start test call <span>→</span></button>
+          </div>
+        </section>
+
+        <div class="workspace-grid">
+          <section class="conversation-card" aria-labelledby="conversation-title">
+            <div class="card-header">
+              <div><div class="section-kicker">02 / LIVE SIMULATION</div><h2 id="conversation-title">Conversation</h2></div>
+              <span id="call-status" class="call-status"><i></i> NOT STARTED</span>
+            </div>
+            <div id="transcript" class="transcript" aria-live="polite">
+              <div class="empty-state">
+                <div class="empty-orb">◌</div>
+                <strong>Your call is ready when you are</strong>
+                <p>Set the customer details above, then start a test call to begin the identity check.</p>
+              </div>
+            </div>
+            <div class="composer">
+              <div class="scenario-row">
+                <label for="scenario-select">Try a customer response</label>
+                <select id="scenario-select">
+                  <option value="">Choose a sample…</option>
+                  <option value="yes, this is Priya speaking">Confirm identity</option>
+                  <option value="I'm in a meeting, call me tomorrow at 10 am">Busy — callback</option>
+                  <option value="Yes, this is Priya. The property is agricultural land.">Agricultural property</option>
+                  <option value="Yes, this is Priya. I already have a loan on this property.">Existing loan transfer</option>
+                  <option value="Yes, this is Priya.">Confirm identity only</option>
+                  <option value="Yes, I would like to continue.">Continue with offer</option>
+                  <option value="Residential, jointly owned, original documents are ready; I need 50 lakhs. I'm self-employed, income is credited to my bank; property worth 1 crore, 10 years.">All eligibility details</option>
+                  <option value="I need 90 lakhs; 75 lakhs is fine.">Accept the maximum</option>
+                </select>
+              </div>
+              <form id="turn-form" class="message-form">
+                <input id="utterance" type="text" placeholder="Customer says…" autocomplete="off" disabled>
+                <button id="send-button" class="send-button" type="submit" aria-label="Send response" disabled>↑</button>
+              </form>
+              <div class="composer-foot"><span>Enter to send <kbd>↵</kbd></span><span>Local demo · transcript not saved to disk</span></div>
+            </div>
+          </section>
+
+          <aside class="qualification-card" aria-labelledby="qualification-title">
+            <div class="card-header">
+              <div><div class="section-kicker">03 / ELIGIBILITY</div><h2 id="qualification-title">Qualification checklist</h2></div>
+              <span id="progress-count" class="progress-count">0 / 7</span>
+            </div>
+            <div class="progress-track"><span id="progress-bar"></span></div>
+            <div id="field-list" class="field-list"></div>
+            <div class="handoff-note">
+              <span class="note-icon">✳</span>
+              <div><strong>Human expert handoff</strong><p>Only after all seven eligible answers. Exact rates are shared by the expert.</p></div>
+            </div>
+            <div class="boundary-note"><span>ⓘ</span><p>Preliminary qualification only. Not a loan approval, rate quote, or guarantee.</p></div>
+          </aside>
+        </div>
+
+        <footer class="page-footer"><span>HOME CREDIT · VOICE AGENT DESIGN ASSIGNMENT</span><span><a href="/api/health">API</a> · See README for Retell setup & submission steps</span></footer>
+      </div>
+    </main>
+  </div>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

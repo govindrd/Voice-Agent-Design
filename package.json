@@ -1,0 +1,15 @@
+{
+  "name": "home-credit-lap-voice-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A deterministic local demo for Home Credit LAP voice-agent qualification.",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test",
+    "test:watch": "node --test --watch"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
