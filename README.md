@@ -66,10 +66,4 @@ Invoke-RestMethod -Method Post -Uri "http://127.0.0.1:3000/api/sessions/$id/turn
 
 Accepted session variables: `company_name`, `customer_name`, `agent_name`, `agent_gender` (`male`, `female`, or `neutral`), `current_date`, `current_day`, `current_time`, `additional_context_from_rag`, `language_to_speak` (`English` or `Hindi`), and `conversation_history`. Each turn supplies `customer_utterance`. The backend keeps the live transcript separately; injected history is context only and cannot make a checklist field complete.
 
-## External account and recording submission
 
-The local app does **not** create a Retell account, place calls, make a loan offer to a real customer, or generate a public recording/log URL. Follow the manual account, testing, privacy, and public-link steps in [`docs/RETELL_SETUP.md`](docs/RETELL_SETUP.md) with your own authorized Retell account and any required phone number/credentials. Do not upload real customer PII or publish a recording without the required consent and approval.
-
-## Assignment source
-
-The attached SalesAgents AI Voice Agent Design PDF is the authoritative behavior specification. The supplied Notion reference page was checked during implementation but did not expose readable content in the public fetch, so no unverified material from it is treated as a requirement.
